@@ -1,0 +1,71 @@
+<% layout('layouts/boilerplate') %>
+
+    <div class="row my-5">
+        <div class="col-md-6 offset-md-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title text-center mb-3">Edit Campground</h5>
+                    <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST" class="validated-form"
+                        novalidate enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label class="form-label" for="title">Title</label>
+                            <input class="form-control" type="text" name="campground[title]" id="title"
+                                value="<%= campground.title %>" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="location">Location</label>
+                            <input class="form-control" type="text" name="campground[location]" id="location"
+                                value="<%= campground.location %>" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="price">Price per day</label>
+                            <div class="input-group">
+                                <span class="input-group-text" id="price-label">$</span>
+                                <input class="form-control" type="text" name="campground[price]" id="price"
+                                    aria-describedby="price-label" value="<%= campground.price %>" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="description">Description</label>
+                            <textarea class="form-control" type="text" name="campground[description]" id="description"
+                                required><%= campground.description %></textarea>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Upload More Images</label>
+                            <input class="form-control" type="file" id="image" name="image" multiple>
+                        </div>
+                        <div class="mb-3">
+                            <p class="form-label">Select images below to delete:</p>
+                            <% campground.images.forEach(function(img, i){ %>
+                                <div>
+                                    <div class="form-check-inline">
+                                        <input type="checkbox" name="deleteImages[]" value="<%=img.filename%>"
+                                            id="image-<%= i %>" class="form-check-input" aria-label="delete image">
+                                    </div>
+                                    <img src="<%=img.thumbnail%>" class="img-thumbnail mb-2" alt="">
+                                    <% }) %>
+                                </div>
+                        </div>
+                        <div class="my-3 d-grid">
+                            <button class="btn btn-info text-light">Update Campground</button>
+                        </div>
+                    </form>
+                    <div class="d-grid">
+                        <a class="btn btn-danger mb-3" href="/campgrounds/<%= campground._id %>">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
