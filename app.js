@@ -4,12 +4,12 @@ if (process.env.NODE_ENV !== 'production') {
 
 const express = require('express');
 const session = require('express-session');
-const mongoSanitize = require('express-mongo-sanitize');
 const flash = require('connect-flash');
 const path = require('path');
-const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
 const methodOverride = require('method-override');
+const mongoose = require('mongoose');
+const mongoSanitize = require('express-mongo-sanitize');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const helmet = require('helmet')
@@ -123,7 +123,6 @@ app.use(
         },
     })
 );
-
 
 app.use(passport.initialize());
 app.use(passport.session());
